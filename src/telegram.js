@@ -1,20 +1,16 @@
-const TelegramBot = require('telegram-bot-api');
-require('dotenv').config();
+const axios = require('axios');
 
-const bot = new TelegramBot({
-  token: process.env.TELEGRAM_BOT_TOKEN,
-});
+const sendTelegramMessage = async (botToken, chatId, message) => {
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    try {
+        await axios.post(url, {
+            chat_id: chatId,
+            text: message
+        });
+        console.log("Message sent successfully!");
+    } catch (error) {
+        console.error("Error sending message:", error.response?.data || error.message);
+    }
+};
 
-async function sendTelegramReminder(message) {
-  try {
-    await bot.sendMessage({
-      chat_id: process.env.TELEGRAM_CHAT_ID,
-      text: message,
-    });
-    console.log('Telegram message sent successfully!');
-  } catch (error) {
-    console.error('Error sending Telegram message:', error);
-  }
-}
-
-module.exports = { sendTelegramReminder };
+module.exports = { sendTelegramMessage };

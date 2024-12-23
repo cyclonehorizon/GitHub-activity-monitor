@@ -1,11 +1,9 @@
 const { differenceInDays } = require('date-fns');
 
-function detectInactivity(commitDates, thresholdDays = 3) {
-  const today = new Date();
-  const lastCommitDate = new Date(commitDates[0]); // Assuming commits are sorted by date
-  const daysSinceLastCommit = differenceInDays(today, lastCommitDate);
+const checkInactivity = (commitDates) => {
+    if (commitDates.length === 0) return Infinity;
+    const lastCommitDate = new Date(commitDates[0]); // Most recent commit
+    return differenceInDays(new Date(), lastCommitDate);
+};
 
-  return daysSinceLastCommit >= thresholdDays;
-}
-
-module.exports = { detectInactivity };
+module.exports = { checkInactivity };
