@@ -4,12 +4,13 @@ const { sendTelegramMessage } = require('./telegram');
 const { checkInactivity } = require('./utils');
 
 const main = async () => {
-    const username = 'your_username';
-    const repo = 'your_repo';
+    const username = 'Atul090';
+    const repo = 'Leetcode';
     const token = process.env.GITHUB_TOKEN;
 
     const commits = await getCommitHistory(username, repo, token);
     const daysSinceLastCommit = checkInactivity(commits);
+    console.log(`Days since last commit: ${daysSinceLastCommit}`);
 
     if (daysSinceLastCommit > 3) { // Inactivity threshold
         await sendTelegramMessage(
