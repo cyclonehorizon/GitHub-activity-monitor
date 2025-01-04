@@ -1,0 +1,14 @@
+Adding preferrable todos:
+
+Challenge: Handling Large Data Volumes:
+
+Use efficient database queries and indexing.
+Archive older, less-used data periodically.
+Challenge: Scaling Notifications:
+
+Implement a distributed task queue (Celery, Bull.js).
+Use services like Twilio for WhatsApp and SMS, and Telegram APIs for bot messages.
+Challenge: Managing Authentication:
+
+Securely store OAuth tokens for accessing user data.
+Refresh tokens periodically using GitHub’s API.
